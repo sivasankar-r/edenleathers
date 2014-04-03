@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/pages/templates/template.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<div class="row">
+				<ui:insert name="leftNavigation">
+					<ui:include src="templates/leftNavigation.xhtml" />
+				</ui:insert>
+				
+				<h:form id="productsForm">
+					<div class="col-md-9">
+						<div class="row">
+							<ui:repeat var="product" value="#{productListMBean.products}">
+								<div class="col-sm-4 col-lg-4 col-md-4">
+									<div class="thumbnail">
+										<img src="#{product.icon}" />
+										<div class="caption">
+											<h4 class="pull-right">Rs. #{product.pricing}</h4>
+											<h4>
+												<h:commandLink style="font-size: 16px;" value="#{product.name}" action="#{productListController.loadProduct}">
+													<f:setPropertyActionListener target="#{selectedProductMBean.product}" value="#{product}"/>
+												</h:commandLink>
+											</h4>
+											<p>#{product.shortDescription}</p>
+										</div>
+										<div class="ratings">
+											<p class="pull-right">#{product.ratingCount} reviews</p>
+											<p>
+												<ui:repeat var="dummy" value="#{product.ratingCacheArray}">
+													<span class="glyphicon glyphicon-star"></span>
+												</ui:repeat>
+												<ui:repeat var="dummy" value="#{product.emptyRatingCacheArray}">
+													<span class="glyphicon glyphicon-star-empty"></span>
+												</ui:repeat>
+											</p>
+										</div>
+									</div>
+								</div>
+							</ui:repeat>
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

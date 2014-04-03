@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<import resource="config/beans/controller-beans.xml"/>
+	<import resource="config/beans/dao-beans.xml"/>
+	<import resource="config/beans/managed-beans.xml"/>
+	<import resource="config/beans/model-beans.xml"/>
+	<import resource="config/beans/rest-beans.xml"/>
+	<import resource="config/beans/service-beans.xml"/>
+	<context:annotation-config/>
+	<context:component-scan  base-package="com.kanchutech.eden" />
+</beans>

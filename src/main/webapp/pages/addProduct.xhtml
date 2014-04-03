@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/pages/templates/template.xhtml">
+	<ui:define name="content">
+		<h:form id="productsForm">
+			<div class="container">
+				<div class="row">
+					<ui:insert name="leftNavigation">
+						<ui:include src="templates/leftNavigation.xhtml" />
+					</ui:insert>
+
+					<div class="col-md-9">
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputText class="control-label" value="Title"/>
+								<h:message for="productsForm:nameTxt"/>
+								<h:inputText id="nameTxt" class="form-control" value="#{addProductMBean.product.name}" required="true" requiredMessage="Mandatory Field"/>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Short Description"/>
+								<h:inputTextarea class="form-control" value="#{addProductMBean.product.shortDescription}" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Detailed Description"/>
+								<h:inputTextarea class="form-control" value="#{addProductMBean.product.longDescription}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Category"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.category}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Vendor"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.vendor}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Price"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.pricing}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Weight (in kgs)"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.weight}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Sizes Available"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.sizes}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Colors Available"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.colors}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Material"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.materials}" />
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-md-6">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Style"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.style}" />
+							</div>
+						</div>
+						<div class="col-md-12">
+							<h:outputLabel class="control-label" value="Upload Image"/>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+						            <rich:fileUpload fileUploadListener="#{addProductController.fileUploadListener}" id="upload" acceptedTypes="jpg, gif, png, bmp, jpeg"
+						                ontyperejected="alert('Only JPG, JPEG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+						                <a4j:ajax event="uploadcomplete" execute="@none" render="info" />
+						            </rich:fileUpload>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+					         	<h:panelGroup id="info" layout="block">
+					              <rich:panel bodyClass="info">
+					                    <f:facet name="header">
+					                        <h:outputText value="Uploaded Files Info" />
+					                    </f:facet>
+					                    <h:outputText value="No file currently uploaded" rendered="#{addProductController.addProductMBean.uploadedImage==null}" />
+			                            <h:panelGrid columns="2">
+			                                <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{addProductController.paint}" style="width:100px; height:100px;" cacheable="false">
+			                                </a4j:mediaOutput>
+			                                <h:panelGrid columns="1">
+			                                    <h:outputText value="#{addProductController.addProductMBean.uploadedImage.name}" />
+			                                    <h:outputText value="#{addProductController.addProductMBean.uploadedImage.length} bytes" />
+			                                </h:panelGrid>
+			                            </h:panelGrid>
+					                </rich:panel>
+					                <br />
+					                <h:commandLink class="btn btn-primary" render="info, upload" value="Clear Uploaded Data" rendered="#{addProductController.addProductMBean.uploadedImage!=null}">
+					                	<f:ajax execute="@this" listener="#{addProductController.clearUploadData}" render="productsForm:info"></f:ajax>
+									</h:commandLink>
+					            </h:panelGroup>
+					        </div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<h:outputLabel class="control-label" value="Tags"/>
+								<h:inputText class="form-control" value="#{addProductMBean.product.tags}" title="Tags can be used to categorize products by properties like color, size, and material."/>
+							</div>
+						</div>
+						<div class="col-sm-2 col-lg-2 col-md-2">
+							<h:outputLabel class="control-label" value="Visibility"/>
+						</div>
+						<div class="col-sm-10 col-lg-10 col-md-10">
+							<div class="form-group">
+								<h:selectOneRadio class="form-control" value="#{addProductMBean.product.published}" title="Control whether this product visible to users.">
+									<f:selectItem itemLabel="Visible" itemValue="true"/>
+									<f:selectItem itemLabel="Hidden" itemValue="false"/>
+								</h:selectOneRadio>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div style="text-align:center">
+								<h:commandLink class="btn btn-primary" style="margin:10px" value="Save" action="#{addProductController.saveProduct}" />
+								<h:commandLink class="btn btn-danger" style="margin:10px" value="Cancel"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

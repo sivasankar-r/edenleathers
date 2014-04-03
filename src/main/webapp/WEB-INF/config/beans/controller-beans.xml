@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		
+	<bean id="productListController" class="com.kanchutech.eden.controller.ProductListController" scope="request">
+		<property name="productListMBean" ref="productListMBean"/>
+		<property name="productService" ref="productService"/>
+		<property name="selectedProductMBean" ref="selectedProductMBean"/>
+		<property name="reviewService" ref="reviewService"/>
+	</bean>
+	
+	<bean id="addProductController" class="com.kanchutech.eden.controller.AddProductController" scope="request">
+		<property name="addProductMBean" ref="addProductMBean"/>
+		<property name="addProductService" ref="addProductService"/>
+		<property name="imageUploadService" ref="picasaImageUploadService"/>
+		<property name="productListController" ref="productListController"/>
+	</bean>
+	
+	<bean id="viewProductController" class="com.kanchutech.eden.controller.ViewProductController" scope="request">
+		<property name="reviewService" ref="reviewService"/>
+		<property name="productService" ref="productService"/>
+		<property name="selectedProductMBean" ref="selectedProductMBean"/>
+		<property name="userMBean" ref="userMBean"/>
+	</bean>
+</beans>
