@@ -21,13 +21,13 @@ public class ProductDao {
 	
 	public List<Product> fetchAllProducts(){
 		List<Product> allProducts = new ArrayList<Product>();
-		String query = "SELECT * FROM PRODUCTS";
+		String query = "SELECT * FROM products";
 		allProducts = getJdbcTemplate().query(query, new BeanPropertyRowMapper<Product>(Product.class));
 		return allProducts;
 	}
 	
 	public Product fetchProduct(int productId){
-		String query = "SELECT * FROM PRODUCTS p WHERE p.id = " + productId;
+		String query = "SELECT * FROM products p WHERE p.id = " + productId;
 		return getJdbcTemplate().queryForObject(query, new BeanPropertyRowMapper<Product>(Product.class));
 	}
 	

@@ -27,7 +27,7 @@ public class ReviewDao {
 	public List<Review> fetchReviews(Product product) {
 		List<Review> reviews = new ArrayList<Review>();
 		if(product != null && product.getId() > 0){
-			String query = "SELECT * FROM REVIEWS WHERE PRODUCT_ID = " + product.getId() + " ORDER BY CREATED_AT DESC";
+			String query = "SELECT * FROM reviews WHERE product_id = " + product.getId() + " ORDER BY created_at DESC";
 			reviews = getJdbcTemplate().query(query, new BeanPropertyRowMapper<Review>(Review.class));
 		}
 		return reviews;
@@ -51,11 +51,11 @@ public class ReviewDao {
 	}
 
 	private Review fetchReview(int productId, String userId) {
-		return getJdbcTemplate().queryForObject("SELECT * FROM REVIEWS WHERE PRODUCT_ID = ? AND USER_ID = ?", new Object[]{productId, userId}, new BeanPropertyRowMapper<Review>(Review.class));
+		return getJdbcTemplate().queryForObject("SELECT * FROM reviews WHERE product_id = ? AND user_id = ?", new Object[]{productId, userId}, new BeanPropertyRowMapper<Review>(Review.class));
 	}
 
 	public boolean alreadyCommented(Review review) {
-		String query = "SELECT COUNT(*) FROM REVIEWS WHERE product_id = ? AND user_id = ?"; 
+		String query = "SELECT COUNT(*) FROM reviews WHERE product_id = ? AND user_id = ?"; 
 		return getJdbcTemplate().queryForInt(query, new Object[]{review.getProductId(), review.getUserId()}) > 0;
 	}
 
