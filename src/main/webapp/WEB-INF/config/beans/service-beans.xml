@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="productService" class="com.kanchutech.eden.service.ProductService" scope="singleton">
+		<property name="productDao" ref="productDao"/>
+	</bean>
+	
+	<bean id="addProductService" class="com.kanchutech.eden.service.AddProductService" scope="singleton">
+		<property name="addProductDao" ref="addProductDao"></property>
+	</bean>
+	
+	<bean id="picasaImageUploadService" class="com.kanchutech.eden.service.PicasaImageUploadService" scope="singleton"/>
+	<bean id="dbImageUploadService" class="com.kanchutech.eden.service.DbImageUploadService" scope="singleton"/>
+	<bean id="dummyImageUploadService" class="com.kanchutech.eden.service.DummyImageUploadService" scope="singleton"/>
+	<bean id="reviewService" class="com.kanchutech.eden.service.ReviewService" scope="singleton">
+		<property name="reviewDao" ref="reviewDao"/>
+		<property name="productService" ref="productService"/>
+	</bean>
+</beans>

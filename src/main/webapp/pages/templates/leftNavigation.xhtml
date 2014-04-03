@@ -1,0 +1,10 @@
+<div id="leftNavigation" xmlns:h="http://java.sun.com/jsf/html">
+	<h:form id="leftNavForm">
+		<div class="col-md-3">
+	        <div class="list-group">
+	        	<h:commandLink class="list-group-item" action="addProduct" value="#{label.addProduct}" style="display:#{userMBean.user.admin == true? 'block': 'none'}; font-size:14px;"/>
+	        	<h:commandLink class="list-group-item" immediate="true" action="#{productListController.fetchAllProducts}" value="#{label.home}" style="font-size:14px;"/>
+	        </div>
+	    </div>
+	</h:form>
+</div>

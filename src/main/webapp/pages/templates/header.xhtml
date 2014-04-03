@@ -1,0 +1,53 @@
+<div id="top-header" xmlns:h="http://java.sun.com/jsf/html">
+	<h:form id="navForm">
+		<nav class="navbar navbar-inverse" role="navigation">
+	        <div class="container">
+	            <div class="navbar-header">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+	                    <span class="sr-only">Toggle navigation</span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                    <span class="icon-bar"></span>
+	                </button>
+	                <h:commandLink action="#{productListController.fetchAllProducts}" value="#{label.organisation}" style="font-size:18px;" class="navbar-brand"/>
+	            </div>
+	
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse navbar-ex1-collapse">
+	                <ul class="nav navbar-nav">
+	                    <li>
+	                    	<h:commandLink action="#{productListController.fetchAllProducts}" value="#{label.aboutUs}" onclick="alert('Thanks for your interest to know about us. \nBut we apologise, the page is still in development'); return false;" style="font-size:14px;"/>
+	                    </li>
+	                    <li>
+	                    	<h:commandLink action="#{productListController.fetchAllProducts}" value="#{label.services}" onclick="alert('Hurray...!!! You want to know more about our services. \nBut we apologise, our developer is not so interested to create static pages :[ \n but soon we will do that too, just for your sake'); return false;"  style="font-size:14px;"/>
+	                    </li>
+	                    <li>
+	                    	<h:commandLink action="#{productListController.fetchAllProducts}" value="#{label.contactUs}" onclick="alert('We are busily creating that page for you!'); return false;" style="font-size:14px;"/>
+	                    </li>
+	                </ul>
+	                <h:panelGroup id="userInfoDiv" style="display:#{userMBean.user.name != null? 'block': 'none'}">
+		                <div id="userInfo" style="float:right;">
+		                	<img id="userIcon" src="#{userMBean.user.image}" height="40px" width="40px" style="margin: 5px;"/>
+		                	<h:outputText id="userName" value="#{userMBean.user.name}" style="color:white; margin-left:10px;"/>
+		                </div>
+					</h:panelGroup>
+					
+					<h:panelGroup id="signInBtnDiv" style="display:#{userMBean.user.name == null? 'block': 'none'}">                
+		                <div id="signinButton" style="float:right; margin-top: 10px;">
+							<span class="g-signin"
+								data-scope="https://www.googleapis.com/auth/plus.profile.emails.read"
+								data-clientid="378329362383-htn1k5uh277u7m4o7ss6i9u7ms1bdjb4.apps.googleusercontent.com"
+								data-redirecturi="postmessage"
+								data-accesstype="offline"
+								data-cookiepolicy="single_host_origin"
+								data-callback="onSignInCallback">
+							</span>
+						</div>
+					</h:panelGroup>
+	            </div>
+	            
+	            
+	        </div>
+	    </nav>
+	</h:form>    
+</div>
