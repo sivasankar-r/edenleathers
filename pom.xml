@@ -6,6 +6,8 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>edenleathers</name>
+	
+	
 	<repositories>
 		<repository>
 			<id>eap</id>
@@ -18,6 +20,8 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
+	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>eap</id>
@@ -30,7 +34,10 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
+	
 	<properties>
+		<javaee6.with.tools.version>1.0.0.M1</javaee6.with.tools.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
@@ -38,6 +45,8 @@
 		<org.richfaces.bom.version>4.1.0.Final</org.richfaces.bom.version>
 		<slf4jVersion>1.7.6</slf4jVersion>
 	</properties>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -45,9 +54,10 @@
 			<version>5.1.25</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.faces</groupId>
-			<artifactId>javax.faces-api</artifactId>
-			<version>2.1</version>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+			<version>2.0.2.Final-redhat-1</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -177,6 +187,8 @@
 			<version>1.17.0-rc</version>
 		</dependency>
 	</dependencies>
+	
+	
 	<profiles>
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
