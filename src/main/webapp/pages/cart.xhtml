@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/pages/templates/template.xhtml">
+	<ui:define name="content">
+		<h:form id="cartForm">
+			<div class="container">
+				<div class="row">
+					<ui:insert name="leftNavigation">
+						<ui:include src="templates/leftNavigation.xhtml" />
+					</ui:insert>
+
+					<div class="col-md-9">
+						<table id="userCartTable" class="table table-bordered table-hover">
+							<tbody>
+								<ui:repeat var="product" value="#{userMBean.cartProductList}" varStatus="varStatus">
+									<tr>
+										<td>
+											<h:commandLink action="#{cartController.deleteProduct}" style="font-size:1.2em; color:black;" >
+												<span class="glyphicon glyphicon-remove"></span>
+												<f:setPropertyActionListener target="#{cartController.selectedForDelete}" value="#{product}" />
+											</h:commandLink>
+										</td>
+										<td>#{varStatus.index+1}</td>
+										<td>#{product.name}</td>
+									</tr>
+								</ui:repeat>
+								<tr>
+									<td colspan="3" align="center">
+										<h:commandLink value="Check Out" action="#{cartController.checkOutCart}" class="btn btn-success btn-green" style="margin:10px">
+										</h:commandLink>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

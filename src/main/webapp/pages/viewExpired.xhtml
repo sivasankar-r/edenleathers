@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/pages/templates/template.xhtml">
+	<ui:define name="content">
+		<h:form id="errorForm">
+			<div class="container">
+		        <h2 class="errorMsg">
+		        	Your Session Expired :(
+		        </h2>
+	        	<h:commandButton style="width:150px; height:30px;" action="index" value="Go to Home Page"/>
+		    </div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
