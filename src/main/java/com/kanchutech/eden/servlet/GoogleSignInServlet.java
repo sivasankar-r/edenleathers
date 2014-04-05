@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.google.gson.Gson;
 import com.kanchutech.eden.managed.UserMBean;
 import com.kanchutech.eden.model.User;
-import com.google.gson.Gson;
+import com.kanchutech.eden.service.CartService;
 
 public class GoogleSignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +29,8 @@ public class GoogleSignInServlet extends HttpServlet {
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(request.getSession(false).getServletContext());
         UserMBean userMBean = ctx.getBean("userMBean", UserMBean.class);
         userMBean.setUser(user);
+        CartService cartService = ctx.getBean("cartService", CartService.class);
+        userMBean.setCartProductList(cartService.fetchCartItems(user));
         if(user.getEmail().equals("siva.pcu@gmail.com") || user.getEmail().equals("rsivasankar01@gmail.com")){
         	user.setAdmin(true);
         }

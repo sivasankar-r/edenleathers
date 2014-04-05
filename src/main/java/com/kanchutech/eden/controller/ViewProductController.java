@@ -8,15 +8,34 @@ import com.kanchutech.eden.managed.SelectedProductMBean;
 import com.kanchutech.eden.managed.UserMBean;
 import com.kanchutech.eden.model.Product;
 import com.kanchutech.eden.model.Review;
+import com.kanchutech.eden.service.ICartService;
 import com.kanchutech.eden.service.IProductService;
 import com.kanchutech.eden.service.IReviewService;
 
 
 public class ViewProductController {
+	private ICartService cartService;
 	private IReviewService reviewService;
 	private IProductService productService;
 	private SelectedProductMBean selectedProductMBean;
 	private UserMBean userMBean;
+	
+	public void addToCart(AjaxBehaviorEvent event){
+		cartService.addProduct(userMBean.getUser(), selectedProductMBean.getProduct());
+		userMBean.setCartProductList(cartService.fetchCartItems(userMBean.getUser()));
+	}
+	
+	public boolean isProductExistInCart(){
+		//return userMBean.getCartProductList().contains(selectedProductMBean.getProduct());
+		boolean existFlag = false;
+		for(Product p : userMBean.getCartProductList()){
+			if(p.getId() == selectedProductMBean.getProduct().getId()){
+				existFlag = true;
+				break;
+			}
+		}
+		return existFlag;
+	}
 	
 	public void saveReview(AjaxBehaviorEvent event){
 		Review review = selectedProductMBean.getNewReview();
@@ -69,6 +88,14 @@ public class ViewProductController {
 
 	public void setProductService(IProductService productService) {
 		this.productService = productService;
+	}
+
+	public ICartService getCartService() {
+		return cartService;
+	}
+
+	public void setCartService(ICartService cartService) {
+		this.cartService = cartService;
 	}
 
 }

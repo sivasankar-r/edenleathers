@@ -8,10 +8,9 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description"
-		content="Official Site for Eden Leathers, India" />
+	<meta name="description" content="Official Site for Eden Leathers, India" />
 	<meta name="author" content="Siva Sankar Rajendran" />
-	<title>Test Bed</title>
+	<title>Eden Leathers</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" />
@@ -20,6 +19,13 @@
 	<style>
 		iframe[src^="https://apis.google.com/u/0/_/widget/oauthflow/toast"] {
 			display: none;
+		}
+		
+		.errorMsg {
+			font-family: Arial;
+			font-weight: bold;
+			font-size: 16px;
+			color: red;
 		}
 	</style>
 	<!-- BEGIN Pre-requisites -->
@@ -51,7 +57,17 @@
 		</ui:insert>
 	</div>
 
-
+	<div id="cartDiv">
+		<ui:insert name="cartLinks">
+			<h:form>
+				<div style="float: right;">
+					<h:commandLink id="cartLink" action="#{cartController.showCart}" rel="tooltip" title="Show Cart" style="font-size:1.5em; color:black;">
+			      		<span class="glyphicon glyphicon-shopping-cart"></span>
+			    	</h:commandLink>
+	    		</div>
+	    	</h:form>
+		</ui:insert>
+	</div>
 	<div id="content">
 		<ui:insert name="content"></ui:insert>
 	</div>

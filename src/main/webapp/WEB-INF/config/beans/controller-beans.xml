@@ -23,5 +23,12 @@
 		<property name="productService" ref="productService"/>
 		<property name="selectedProductMBean" ref="selectedProductMBean"/>
 		<property name="userMBean" ref="userMBean"/>
+		<property name="cartService" ref="cartService"/>
+	</bean>
+	
+	<bean id="cartController" class="com.kanchutech.eden.controller.CartController" scope="request">
+		<property name="cartService" ref="cartService"/>
+		<property name="userMBean" ref="userMBean"/>
+		<property name="emailService" ref="sendGridEmailService"/>
 	</bean>
 </beans>

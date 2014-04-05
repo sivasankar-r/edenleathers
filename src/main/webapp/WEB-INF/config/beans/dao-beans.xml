@@ -25,5 +25,9 @@
 	
 	<bean id="reviewDao" class="com.kanchutech.eden.dao.ReviewDao" scope="singleton">
 		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean id="cartDao" class="com.kanchutech.eden.dao.CartDao" scope="singleton">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>			
 </beans>

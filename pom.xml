@@ -185,6 +185,12 @@
 			<artifactId>google-http-client-jackson</artifactId>
 			<version>1.17.0-rc</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.sendgrid</groupId>
+			<artifactId>sendgrid-java</artifactId>
+			<version>0.1.2</version>
+		</dependency>
 	</dependencies>
 	
 	

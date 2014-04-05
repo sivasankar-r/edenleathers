@@ -19,4 +19,8 @@
 		<property name="reviewDao" ref="reviewDao"/>
 		<property name="productService" ref="productService"/>
 	</bean>
+	<bean id="sendGridEmailService" class="com.kanchutech.eden.service.SendGridEmailService" scope="singleton"/>
+	<bean id="cartService" class="com.kanchutech.eden.service.CartService" scope="singleton">
+		<property name="cartDao" ref="cartDao"/>
+	</bean>
 </beans>
